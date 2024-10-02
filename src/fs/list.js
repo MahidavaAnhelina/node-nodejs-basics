@@ -15,7 +15,7 @@ const list = async () => {
 		fs.readdirSync(folderToRead).forEach(file => {
 			console.log(file);
 		});
-		console.log('Files read successfully!');
+		console.log('File\'s names read successfully!');
 	} catch (error) {
 		console.log(error);
 	}
