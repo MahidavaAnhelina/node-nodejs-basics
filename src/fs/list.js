@@ -1,5 +1,24 @@
+import fs from 'node:fs';
+
+/*
+* implement function that prints all array of filenames from files
+* folder into console (if files folder doesn't exists Error
+* with message FS operation failed must be thrown)
+ */
+
 const list = async () => {
-    // Write your code here 
+	const folderToRead = './files';
+	try {
+		if (!fs.existsSync(folderToRead)) {
+			throw Error('FS operation failed');
+		}
+		fs.readdirSync(folderToRead).forEach(file => {
+			console.log(file);
+		});
+		console.log('Files read successfully!');
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 await list();
