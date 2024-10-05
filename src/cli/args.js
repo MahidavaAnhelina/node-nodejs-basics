@@ -18,7 +18,7 @@ const parseArgs = () => {
 		});
 		console.log(result);
 	}  catch (err) {
-		console.error(err);
+		console.error(err.message);
 	}
 };
 

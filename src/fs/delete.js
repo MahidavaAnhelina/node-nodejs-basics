@@ -22,7 +22,7 @@ const remove = async () => {
 			console.log(`File ${fileToRemove} has been successfully removed.`);
 		});
 	} catch (error){
-		console.error(error);
+		console.error(error.message);
 	}
 };
 

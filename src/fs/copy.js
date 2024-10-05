@@ -16,7 +16,7 @@ const copy = async () => {
 		fs.cpSync(srcName, destinationName, {recursive: true});
 		console.log('File copied successfully!');
 	} catch (err) {
-		console.error(err);
+		console.error(err.message);
 	}
 };
 

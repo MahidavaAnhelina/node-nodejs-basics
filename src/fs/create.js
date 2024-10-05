@@ -14,13 +14,13 @@ const create = async () => {
 		const content = 'I am fresh and young';
 		fs.writeFile('./files/fresh.txt', content, err => {
 			if (err) {
-				console.error(err);
+				console.error(err.message);
 			} else {
 				console.log('File written successfully');
 			}
 		});
 	} catch (error){
-		console.error(error);
+		console.error(error.message);
 	}
 };
 
