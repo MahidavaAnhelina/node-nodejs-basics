@@ -17,7 +17,7 @@ const write = async () => {
 
 
 		rl.on('line', (input) => {
-			ws.write(input + '\n');
+			ws.write( `${input}\n`);
 		});
 
 		rl.on('SIGINT', () => {
