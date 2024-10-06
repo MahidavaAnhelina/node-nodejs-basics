@@ -1,4 +1,6 @@
 import fs from 'node:fs';
+import {dirname, join} from "path";
+import {fileURLToPath} from "node:url";
 
 /*
 * implement function that prints content of the fileToRead.txt
@@ -7,7 +9,8 @@ import fs from 'node:fs';
  */
 
 const read = async () => {
-	const fileToRead = './files/fileToRead.txt';
+	const __dirname = dirname(fileURLToPath(import.meta.url));
+	const fileToRead = join(__dirname, 'files', 'fileToRead.txt');
 	try {
 		if (!fs.existsSync(fileToRead)) {
 			throw Error('FS operation failed');

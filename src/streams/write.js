@@ -5,10 +5,14 @@
 import readline from 'node:readline';
 
 import fs from "node:fs";
+import {dirname, join} from "path";
+import {fileURLToPath} from "node:url";
 
 const write = async () => {
 	try {
-		const ws = fs.createWriteStream('./files/fileToWrite.txt');
+		const __dirname = dirname(fileURLToPath(import.meta.url));
+		const fileToWrite = join(__dirname, 'files', 'fileToWrite.txt');
+		const ws = fs.createWriteStream(fileToWrite);
 
 		const rl = readline.createInterface({
 			input: process.stdin,

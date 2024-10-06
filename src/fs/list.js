@@ -1,4 +1,6 @@
 import fs from 'node:fs';
+import {dirname, join} from "path";
+import {fileURLToPath} from "node:url";
 
 /*
 * implement function that prints all array of filenames from files
@@ -7,7 +9,8 @@ import fs from 'node:fs';
  */
 
 const list = async () => {
-	const folderToRead = './files';
+	const __dirname = dirname(fileURLToPath(import.meta.url));
+	const folderToRead = join(__dirname, 'files');
 	try {
 		if (!fs.existsSync(folderToRead)) {
 			throw Error('FS operation failed');

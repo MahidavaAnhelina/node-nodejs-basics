@@ -1,5 +1,7 @@
 import {Worker} from "node:worker_threads";
 import os from 'node:os';
+import {dirname, join} from "path";
+import {fileURLToPath} from "node:url";
 
 const performCalculations = async () => {
 
@@ -10,7 +12,9 @@ const performCalculations = async () => {
 
 	for (let i = 0; i < numberCores; i++) {
 		lisWorkers.push(new Promise(resolve => {
-			const worker = new Worker('./worker.js', {workerData: {n: ++numberToUse}});
+			const __dirname = dirname(fileURLToPath(import.meta.url));
+			const fileToUse = join(__dirname, '', 'worker.js');
+			const worker = new Worker(fileToUse, {workerData: {n: ++numberToUse}});
 
 			worker.on('message', (message) => {
 				resolve({

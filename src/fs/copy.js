@@ -1,4 +1,6 @@
 import fs from 'node:fs';
+import { fileURLToPath } from "node:url";
+import { join, dirname } from 'path';
 
 /*
  * implement function that copies folder files files with all its content into folder files_copy at
@@ -7,8 +9,9 @@ import fs from 'node:fs';
  */
 
 const copy = async () => {
-	const destinationName = './files_copy';
-	const srcName = 'files';
+	const __dirname = dirname(fileURLToPath(import.meta.url));
+	const destinationName = join(__dirname, 'files_copy');
+	const srcName = join(__dirname, 'files');
 	try {
 		if (fs.existsSync(destinationName) || !fs.existsSync(srcName)) {
 			throw Error('FS operation failed');

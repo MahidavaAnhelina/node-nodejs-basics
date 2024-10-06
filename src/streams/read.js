@@ -4,9 +4,13 @@
  */
 
 import fs from "node:fs";
+import {dirname, join} from "path";
+import {fileURLToPath} from "node:url";
 
 const read = async () => {
-	const rs = fs.createReadStream('./files/fileToRead.txt');
+	const __dirname = dirname(fileURLToPath(import.meta.url));
+	const fileToRead = join(__dirname, 'files', 'fileToRead.txt');
+	const rs = fs.createReadStream(fileToRead);
 
 	rs.pipe(process.stdout);
 

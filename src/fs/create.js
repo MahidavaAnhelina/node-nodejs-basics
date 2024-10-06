@@ -1,18 +1,22 @@
 import fs from 'fs';
+import {dirname, join} from "path";
+import {fileURLToPath} from "node:url";
 
 /*
-* implement function that creates new file fresh.txt with content I am fresh and young
+* implement function that creates new file fileToRemove.txt with content I am fresh and young
 * inside of the files folder (if file already exists Error with message FS operation
 * failed must be thrown)
  */
 
 const create = async () => {
 	try {
-		if (fs.existsSync('./files/fresh.txt')) {
+		const __dirname = dirname(fileURLToPath(import.meta.url));
+		const destinationName = join(__dirname, 'files', 'fileToRemove.txt');
+		if (fs.existsSync(destinationName)) {
 			throw Error('FS operation failed');
 		}
 		const content = 'I am fresh and young';
-		fs.writeFile('./files/fresh.txt', content, err => {
+		fs.writeFile(destinationName, content, err => {
 			if (err) {
 				console.error(err.message);
 			} else {
