@@ -7,14 +7,15 @@
 const parseEnv = () => {
 	try {
 		const prefix = 'RSS_';
-		if (!process.argv.some(value => value.startsWith(prefix))) {
+		if (!Object.keys(process.env).some(value => value.startsWith(prefix))) {
 			throw Error('No variable here');
 		}
-		process.argv.forEach(variable => {
-			if (variable.startsWith(prefix)) {
-				console.log(variable);
-			}
+		let result = '';
+		const listEnv = Object.entries(process.env).filter(([key]) => key.startsWith(prefix));
+		listEnv.forEach(([key,value], i) => {
+			result += `${key}=${value}${ i === (listEnv?.length - 1) ? '' : '; '}`;
 		});
+		console.log(result);
 	}  catch (err) {
 		console.error(err.message);
 	}
